@@ -1,54 +1,51 @@
+from flask import Flask, render_template, request, jsonify
 from password_analyzer import analyze_password
 from password_generator import generate_password
 from hash_generator import hash_password
 
+app = Flask(__name__)
 
-while True:
-    print("\n=== CyberShield ===")
-    print("1. Analyze Password")
-    print("2. Generate Password")
-    print("3. Hash Password")
-    print("4. Exit")
 
-    choice = input("\nChoose an option: ")
+@app.route("/")
+def home():
+    return render_template("index.html")
 
-    if choice == "1":
-        password = input("\nEnter a password: ")
 
-        strength, score, feedback, entropy, rating = analyze_password(password)
+@app.route("/analyze", methods=["POST"])
+def analyze():
+    password = request.json["password"]
 
-        print(f"\nStrength: {strength}")
-        print(f"Score: {score}/5")
-        print(f"Entropy: {entropy} bits")
-        print(f"Security Rating: {rating}")
+    strength, score, feedback, entropy, rating = analyze_password(password)
 
-        if feedback:
-            print("\nSuggestions:")
-            for item in feedback:
-                print(f"- {item}")
-        else:
-            print("\nYour password meets all basic security checks!")
+    return jsonify({
+        "strength": strength,
+        "score": score,
+        "entropy": entropy,
+        "rating": rating,
+        "feedback": feedback
+    })
 
-    elif choice == "2":
-        length = int(input("\nEnter password length: "))
 
-        if length < 8:
-            print("\nPassword length must be at least 8 characters.")
-        else:
-            password = generate_password(length)
-            print(f"\nGenerated Password: {password}")
+@app.route("/generate", methods=["POST"])
+def generate():
+    length = int(request.json["length"])
 
-        
-    elif choice == "3":
-        password = input("\nEnter password: ")
-        hashed = hash_password(password)
+    if length < 8:
+        return jsonify({"error": "Password length must be at least 8."})
 
-        print("\nSHA-256 Hash:")
-        print(hashed)
+    password = generate_password(length)
 
-    elif choice == "4":
-        print("\nExiting CyberShield...")
-        break
+    return jsonify({"password": password})
 
-    else:
-        print("\nInvalid option. Please choose 1-4.")
+
+@app.route("/hash", methods=["POST"])
+def hash_text():
+    text = request.json["text"]
+
+    hashed = hash_password(text)
+
+    return jsonify({"hash": hashed})
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
