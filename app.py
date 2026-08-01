@@ -31,10 +31,14 @@ while True:
 
     elif choice == "2":
         length = int(input("\nEnter password length: "))
-        password = generate_password(length)
 
-        print(f"\nGenerated Password: {password}")
+        if length < 8:
+            print("\nPassword length must be at least 8 characters.")
+        else:
+            password = generate_password(length)
+            print(f"\nGenerated Password: {password}")
 
+        
     elif choice == "3":
         password = input("\nEnter password: ")
         hashed = hash_password(password)
