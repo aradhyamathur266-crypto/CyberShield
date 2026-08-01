@@ -32,6 +32,18 @@ def calculate_entropy(password):
 
     return round(len(password) * math.log2(charset), 2)
 
+def get_security_rating(entropy):
+    if entropy < 28:
+        return "Very Weak"
+    elif entropy < 36:
+        return "Weak"
+    elif entropy < 60:
+        return "Moderate"
+    elif entropy < 80:
+        return "Strong"
+    else:
+        return "Very Strong"
+    
 def analyze_password(password):
     score = 0
     feedback = []
@@ -39,7 +51,7 @@ def analyze_password(password):
     if password.lower() in COMMON_PASSWORDS:
         feedback.append("This is a commonly used password.")
         score = 0
-        return "Very Weak", score, feedback, 0
+        return "Very Weak", score, feedback, 0, "Very Weak"
 
     if len(password) >= 8:
         score += 1
@@ -74,5 +86,6 @@ def analyze_password(password):
         strength = "Strong"
 
     entropy = calculate_entropy(password)
+    rating = get_security_rating(entropy)
 
-    return strength, score, feedback, entropy
+    return strength, score, feedback, entropy, rating
