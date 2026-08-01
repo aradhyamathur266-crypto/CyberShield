@@ -2,40 +2,47 @@ from password_analyzer import analyze_password
 from password_generator import generate_password
 from hash_generator import hash_password
 
-print("=== CyberShield ===")
-print("1. Analyze Password")
-print("2. Generate Password")
-print("3. Hash Password")
 
-choice = input("\nChoose an option: ")
+while True:
+    print("\n=== CyberShield ===")
+    print("1. Analyze Password")
+    print("2. Generate Password")
+    print("3. Hash Password")
+    print("4. Exit")
 
-if choice == "1":
-    password = input("\nEnter a password: ")
+    choice = input("\nChoose an option: ")
 
-    strength, score, feedback = analyze_password(password)
+    if choice == "1":
+        password = input("\nEnter a password: ")
 
-    print(f"\nStrength: {strength}")
-    print(f"Score: {score}/5")
+        strength, score, feedback = analyze_password(password)
 
-    if feedback:
-        print("\nSuggestions:")
-        for item in feedback:
-            print(f"- {item}")
+        print(f"\nStrength: {strength}")
+        print(f"Score: {score}/5")
+
+        if feedback:
+            print("\nSuggestions:")
+            for item in feedback:
+                print(f"- {item}")
+        else:
+            print("\nYour password meets all basic security checks!")
+
+    elif choice == "2":
+        length = int(input("\nEnter password length: "))
+        password = generate_password(length)
+
+        print(f"\nGenerated Password: {password}")
+
+    elif choice == "3":
+        password = input("\nEnter password: ")
+        hashed = hash_password(password)
+
+        print("\nSHA-256 Hash:")
+        print(hashed)
+
+    elif choice == "4":
+        print("\nExiting CyberShield...")
+        break
+
     else:
-        print("\nYour password meets all basic security checks!")
-
-elif choice == "2":
-    length = int(input("\nEnter password length: "))
-    password = generate_password(length)
-
-    print(f"\nGenerated Password: {password}")
-
-elif choice == "3":
-    password = input("\nEnter password: ")
-    hashed = hash_password(password)
-
-    print(f"\nSHA-256 Hash:")
-    print(hashed)
-
-else:
-    print("\nInvalid option.")
+        print("\nInvalid option. Please choose 1-4.")
