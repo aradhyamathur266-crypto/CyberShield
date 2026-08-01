@@ -1,6 +1,9 @@
 # 🛡️ CyberShield
 
 CyberShield is a Python-based cybersecurity toolkit designed to analyze password strength, generate strong passwords, and create SHA-256 password hashes.
+## 📸 Preview
+
+![CyberShield Preview](screenshots/cyberShield.png)
 
 ## ✨ Features
 
