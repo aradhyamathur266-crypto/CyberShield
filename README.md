@@ -1,4 +1,7 @@
 # 🛡️ CyberShield
+### 🌐 Live Demo
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-CyberShield-blue?style=for-the-badge)](https://cybershield-gxjj.onrender.com)
 
 CyberShield is a Python-based cybersecurity toolkit designed to analyze password strength, generate strong passwords, and create SHA-256 password hashes.
 ## 📸 Preview
