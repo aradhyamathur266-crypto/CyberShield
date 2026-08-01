@@ -15,10 +15,11 @@ while True:
     if choice == "1":
         password = input("\nEnter a password: ")
 
-        strength, score, feedback = analyze_password(password)
+        strength, score, feedback, entropy = analyze_password(password)
 
         print(f"\nStrength: {strength}")
         print(f"Score: {score}/5")
+        print(f"Entropy: {entropy} bits")
 
         if feedback:
             print("\nSuggestions:")
