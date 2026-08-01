@@ -8,6 +8,15 @@
 </head>
 
 <body>
+    <nav class="navbar">
+        <div class="logo">🛡️ CyberShield</div>
+
+        <div class="nav-links">
+            <a href="#analyzer">Analyzer</a>
+            <a href="#generator">Generator</a>
+            <a href="#hash">Hash</a>
+        </div>
+    </nav>
 
     <header>
         <h1>🛡️ CyberShield</h1>
@@ -16,19 +25,26 @@
 
     <main>
 
-        <section class="card">
+        <section class="card" id="analyzer">
             <h2>🔍 Password Analyzer</h2>
+            <div class="password-input">
+                <input type="password" id="password" placeholder="Enter Your Password">
+                <button type="button" onClick="togglePassword()">👁️</button>
+            </div>
 
-            <input type="password" id="password" placeholder="Enter your password">
+            
 
             <button onclick="analyzePassword()">
                 Analyze Password
             </button>
 
-            <div id="result"></div>
+            <div id="result">
+                <div class="strength-bar">
+                    <div id="strength-fill"></div>
+                </div>
+            </div>
         </section>
-
-        <section class="card">
+        <section class="card" id="generator">
             <h2>🎲 Password Generator</h2>
 
             <input type="number" id="length" value="12" min="8">
@@ -38,9 +54,12 @@
             </button>
 
             <div id="generated"></div>
-        </section>
 
-        <section class="card">
+            <button id="copyBtn" onclick="copyPassword()" style="display: none;">
+                📋 Copy Password
+            </button>
+        </section>
+        <section class="card" id="hash">
             <h2>#️⃣ SHA-256 Hash Generator</h2>
 
             <input type="text" id="hashInput" placeholder="Enter text">
@@ -50,7 +69,13 @@
             </button>
 
             <div id="hashResult"></div>
+
+            <button id="copyHashBtn" onclick="copyHash()" style="display: none;">
+                📋 Copy Hash
+            </button>
         </section>
+
+    
 
     </main>
 

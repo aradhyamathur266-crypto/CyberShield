@@ -17,21 +17,44 @@ async function analyzePassword() {
 
     const data = await response.json();
 
+    let percentage = (data.score / 5) * 100;
+
     result.innerHTML = `
-        <strong>Strength:</strong> ${data.strength}<br>
-        <strong>Score:</strong> ${data.score}/5<br>
-        <strong>Entropy:</strong> ${data.entropy} bits<br>
-        <strong>Security Rating:</strong> ${data.rating}
+        <div class="strength-bar">
+            <div class="strength-fill" style="width: ${percentage}%"></div>
+        </div>
+
+        <div class="metric">
+            <span>Strength</span>
+            <strong>${data.strength}</strong>
+        </div>
+
+        <div class="metric">
+            <span>Score</span>
+            <strong>${data.score}/5</strong>
+        </div>
+
+        <div class="metric">
+            <span>Entropy</span>
+            <strong>${data.entropy} bits</strong>
+        </div>
+
+        <div class="metric">
+            <span>Security Rating</span>
+            <span class="rating-badge ${data.rating.toLowerCase().replace(" ", "-")}">
+                ${data.rating}
+            </span>
+        </div>
     `;
 }
-
-
 async function generatePassword() {
     const length = document.getElementById("length").value;
     const generated = document.getElementById("generated");
+    const copyBtn = document.getElementById("copyBtn");
 
     if (length < 8) {
         generated.innerHTML = "Password length must be at least 8.";
+        copyBtn.style.display = "none";
         return;
     }
 
@@ -47,11 +70,15 @@ async function generatePassword() {
 
     if (data.error) {
         generated.innerHTML = data.error;
+        copyBtn.style.display = "none";
     } else {
         generated.innerHTML = `
             <strong>Generated Password:</strong><br>
             ${data.password}
         `;
+
+        copyBtn.style.display = "block";
+        copyBtn.innerText = "📋 Copy Password";
     }
 }
 
@@ -59,9 +86,11 @@ async function generatePassword() {
 async function generateHash() {
     const text = document.getElementById("hashInput").value;
     const result = document.getElementById("hashResult");
+    const copyBtn = document.getElementById("copyHashBtn");
 
     if (!text) {
         result.innerHTML = "Please enter some text.";
+        copyBtn.style.display = "none";
         return;
     }
 
@@ -79,4 +108,48 @@ async function generateHash() {
         <strong>SHA-256 Hash:</strong><br>
         ${data.hash}
     `;
+
+    copyBtn.style.display = "block";
+    copyBtn.innerText = "📋 Copy Hash";
+}
+
+
+function togglePassword() {
+    const password = document.getElementById("password");
+
+    if (password.type === "password") {
+        password.type = "text";
+    } else {
+        password.type = "password";
+    }
+}
+document.getElementById("toggleBtn").addEventListener("click", function () {
+    const password = document.getElementById("password");
+
+    if (password.type === "password") {
+        password.type = "text";
+        this.textContent = "🙈";
+    } else {
+        password.type = "password";
+        this.textContent = "👁️";
+    }
+});
+
+function copyPassword() {
+    const generated = document.getElementById("generated");
+    const password = generated.innerText.replace("Generated Password:", "").trim();
+
+    navigator.clipboard.writeText(password);
+
+    document.getElementById("copyBtn").innerText = "✅ Copied!";
+}
+
+function copyHash() {
+    const hash = document.getElementById("hashResult").innerText
+        .replace("SHA-256 Hash:", "")
+        .trim();
+
+    navigator.clipboard.writeText(hash);
+
+    document.getElementById("copyHashBtn").innerText = "✅ Copied!";
 }
