@@ -1,25 +1,32 @@
 # 🛡️ CyberShield
 
-CyberShield is a Python-based cybersecurity toolkit for analyzing password security, generating strong passwords, and creating SHA-256 password hashes.
+CyberShield is a Python-based cybersecurity toolkit designed to analyze password strength, generate strong passwords, and create SHA-256 password hashes.
 
-## 🚀 Features
+## ✨ Features
 
-- 🔍 Password strength analyzer
-- 🔐 Common password detection
-- 🎲 Secure password generator
-- #️⃣ SHA-256 hash generator
+- 🔍 Password strength analysis
+- 🚨 Common password detection
+- 🔐 Strong password generation
+- #️⃣ SHA-256 hashing
 - 💡 Security recommendations
+- 🖥️ Interactive command-line interface
 
-## 🛠️ Technologies
+## 🛠️ Technologies Used
 
 - Python
 - Regular Expressions
-- SHA-256
+- hashlib
 - Git & GitHub
 
-## ▶️ How to Run
+## 📂 Project Structure
 
-Clone the repository:
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+```text
+CyberShield/
+│
+├── app.py
+├── password_analyzer.py
+├── password_generator.py
+├── hash_generator.py
+├── requirements.txt
+├── README.md
+└── .gitignore
