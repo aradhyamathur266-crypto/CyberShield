@@ -3,10 +3,16 @@
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-CyberShield-blue?style=for-the-badge)](https://cybershield-gxjj.onrender.com)
 
-CyberShield is a Python-based cybersecurity toolkit designed to analyze password strength, generate strong passwords, and create SHA-256 password hashes.
+A Flask-based cybersecurity toolkit for password analysis, secure password generation, entropy estimation, security ratings, and SHA-256 hashing.
+
+## 🌐 Live Demo
+
+[🚀 Open CyberShield](https://cybershield-gxjj.onrender.com)
+
 ## 📸 Preview
 
 ![CyberShield Preview](screenshots/cyberShield.png)
+
 
 ## ✨ Features
 
