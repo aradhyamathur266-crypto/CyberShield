@@ -1,9 +1,4 @@
 # 🛡️ CyberShield
-### 🌐 Live Demo
-
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-CyberShield-blue?style=for-the-badge)](https://cybershield-gxjj.onrender.com)
-
-A Flask-based cybersecurity toolkit for password analysis, secure password generation, entropy estimation, security ratings, and SHA-256 hashing.
 
 ## 🌐 Live Demo
 
