@@ -1,4 +1,6 @@
 # 🛡️ CyberShield
+A Flask-based cybersecurity toolkit for password analysis, secure password generation, entropy estimation, security ratings, and SHA-256 hashing.
+
 
 ## 🌐 Live Demo
 
