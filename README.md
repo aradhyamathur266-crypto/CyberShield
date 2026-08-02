@@ -18,7 +18,7 @@ A Flask-based cybersecurity toolkit for password analysis, secure password gener
 - 🔐 Strong password generation
 - #️⃣ SHA-256 hashing
 - 💡 Security recommendations
-- 🖥️ Interactive command-line interface
+- 🖥️ Interactive web dashboard
 
 ## 🛠️ Technologies Used
 
